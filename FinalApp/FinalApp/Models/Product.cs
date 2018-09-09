@@ -21,17 +21,16 @@ namespace FinalApp.Models
         public string ProductName { get; set; }
 
         //Purchase Date
-        //[DataType(DataType.Date)]
-        //[DisplayFormat( DataFormatString = "{dd/MM/yyyy}")]
+        [DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime PurchaseDate { get; set; }
 
 
         //Expiration Date
         [Required]
-        //[DataType(DataType.Date)]
-        //[DisplayFormat(DataFormatString = "{dd/MM/yyyy}")]
+        [DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime ExpirationDate { get; set; }
-
 
 
         //POSSIBLE NEW FUNCTION

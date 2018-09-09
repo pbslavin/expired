@@ -12219,23 +12219,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Dylan\\.nuget\\packages\\": {},
+    "C:\\Users\\Peter Slavin\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dylan\\Desktop\\netcore-workbook\\FinalApp\\FinalApp\\FinalApp.csproj",
+      "projectUniqueName": "D:\\heavy-yogurt\\FinalApp\\FinalApp\\FinalApp.csproj",
       "projectName": "FinalApp",
-      "projectPath": "C:\\Users\\Dylan\\Desktop\\netcore-workbook\\FinalApp\\FinalApp\\FinalApp.csproj",
-      "packagesPath": "C:\\Users\\Dylan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dylan\\Desktop\\netcore-workbook\\FinalApp\\FinalApp\\obj\\",
+      "projectPath": "D:\\heavy-yogurt\\FinalApp\\FinalApp\\FinalApp.csproj",
+      "packagesPath": "C:\\Users\\Peter Slavin\\.nuget\\packages\\",
+      "outputPath": "D:\\heavy-yogurt\\FinalApp\\FinalApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Dylan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Peter Slavin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
