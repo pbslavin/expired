@@ -17,22 +17,34 @@ namespace FinalApp.Controllers
         {
             _context = context;
         }
-        
+
         public async Task<IActionResult> Index()
         {
             return View(await _context.Products.AsNoTracking().OrderBy(a => a.ExpirationDate).ToListAsync());
         }
-      
+
         [HttpGet]
         public ActionResult Create()
         {
+
             return View();
         }
 
-        [HttpGet]
-        public ActionResult Edit(int id)
+
+        [Route("Edit/{id:Guid}")]
+        public ActionResult Edit(Guid? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = _context.Products.Find(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View(new ProductViewModel(product));
         }
 
         [HttpPost]
@@ -41,7 +53,7 @@ namespace FinalApp.Controllers
         {
             try
             {
-                 _context.Products.Add(product);
+                _context.Products.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -59,10 +71,19 @@ namespace FinalApp.Controllers
             return RedirectToAction("Index", _context.Products);
         }
 
-        public ActionResult Edit(Product product)
-        {
-            return RedirectToAction("Index", _context.Products);
 
+        [HttpPost]
+        [Route("Edit/{id:Guid}")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(Guid id, [Bind("ProductId,Brand,ProductName,PurchaseDate,ExpirationDate")] Product product)
+        {
+            if (id != product.ProductId)
+            {
+                return NotFound();
+            }
+            _context.Update(product);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", _context.Products);
         }
 
     }

@@ -43,7 +43,7 @@
                 @Html.DisplayFor(modelItem => item.ExpirationDate, "{0:dd/MM/yyyy}")
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) | 
+                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> | 
                 @Html.ActionLink("Delete", "Delete", new {ProductId = item.ProductId})
             </td>
         </tr>
