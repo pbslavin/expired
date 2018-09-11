@@ -39,14 +39,17 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PurchaseDate, "{0:dd/MM/yyyy}")
             </td>
-            <td>
+            <td @if ((item.ExpirationDate - DateTime.Now).TotalDays < 7) { <text>style="color: red"</text> }>
                 @Html.DisplayFor(modelItem => item.ExpirationDate, "{0:dd/MM/yyyy}")
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> | 
-                @Html.ActionLink("Delete", "Delete", new {ProductId = item.ProductId})
-            </td>
-        </tr>
+        </td>
+
+        <td>
+
+            <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+            @Html.ActionLink("Delete", "Delete", new {ProductId = item.ProductId})
+        </td>
+
+    </tr>
 }
     </tbody>
 </table>
