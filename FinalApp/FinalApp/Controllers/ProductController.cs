@@ -20,12 +20,19 @@ namespace FinalApp.Controllers
 
         public async Task<IActionResult> Index()
         {
+            ViewBag.Categories = await _context.Categories.ToListAsync();
             return View(await _context.Products.AsNoTracking().OrderBy(a => a.ExpirationDate).ToListAsync());
         }
 
         [HttpGet]
         public ActionResult Create()
         {
+            List<Category> NewCategory = new List<Category>();
+            foreach (var c in _context.Categories)
+            {
+                NewCategory.Add(c);
+            }
+            ViewData["NewCategory"] = NewCategory;
 
             return View();
         }
@@ -38,6 +45,13 @@ namespace FinalApp.Controllers
             {
                 return NotFound();
             }
+
+            List<Category> NewCategory = new List<Category>();
+            foreach (var c in _context.Categories)
+            {
+                NewCategory.Add(c);
+            }
+            ViewData["NewCategory"] = NewCategory;
 
             var product = _context.Products.Find(id);
             if (product == null)
@@ -75,7 +89,7 @@ namespace FinalApp.Controllers
         [HttpPost]
         [Route("Edit/{id:Guid}")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(Guid id, [Bind("ProductId,Brand,ProductName,PurchaseDate,ExpirationDate")] Product product)
+        public async Task<ActionResult> Edit(Guid id, [Bind("ProductId,Category,CategoryId,ProductName,PurchaseDate,ExpirationDate")] Product product)
         {
             if (id != product.ProductId)
             {

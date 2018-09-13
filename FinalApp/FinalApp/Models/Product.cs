@@ -13,10 +13,13 @@ namespace FinalApp.Models
             ProductId = Guid.NewGuid();
         }
 
-        [Key]
+        
         public Guid ProductId { get; set; }
 
-        public string Brand { get; set; }
+        [Required]
+        public Category Category { get; set; }
+        public Guid CategoryId { get; set; }
+
         [Required]
         public string ProductName { get; set; }
 

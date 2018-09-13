@@ -14,7 +14,8 @@ namespace FinalApp.Models
         public ProductViewModel(Product product)
         {
             ProductId = product.ProductId;
-            Brand = product.Brand;
+            Category = product.Category;
+            CategoryId = product.CategoryId;
             ProductName = product.ProductName;
             PurchaseDate = product.PurchaseDate;
             ExpirationDate = product.ExpirationDate;

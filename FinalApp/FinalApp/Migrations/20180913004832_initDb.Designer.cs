@@ -10,23 +10,35 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinalApp.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20180907234049_initdb")]
-    partial class initdb
+    [Migration("20180913004832_initDb")]
+    partial class initDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
+                .HasAnnotation("ProductVersion", "2.1.2-rtm-30932")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("FinalApp.Models.Category", b =>
+                {
+                    b.Property<Guid>("CategoryId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CategoryName");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+                });
 
             modelBuilder.Entity("FinalApp.Models.Product", b =>
                 {
                     b.Property<Guid>("ProductId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Brand");
+                    b.Property<Guid>("CategoryId");
 
                     b.Property<DateTime>("ExpirationDate");
 
@@ -37,7 +49,17 @@ namespace FinalApp.Migrations
 
                     b.HasKey("ProductId");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("FinalApp.Models.Product", b =>
+                {
+                    b.HasOne("FinalApp.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
