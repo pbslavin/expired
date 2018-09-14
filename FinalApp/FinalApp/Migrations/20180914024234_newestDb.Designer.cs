@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinalApp.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20180913004832_initDb")]
-    partial class initDb
+    [Migration("20180914024234_newestDb")]
+    partial class newestDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,8 +23,9 @@ namespace FinalApp.Migrations
 
             modelBuilder.Entity("FinalApp.Models.Category", b =>
                 {
-                    b.Property<Guid>("CategoryId")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CategoryName");
 
@@ -35,10 +36,11 @@ namespace FinalApp.Migrations
 
             modelBuilder.Entity("FinalApp.Models.Product", b =>
                 {
-                    b.Property<Guid>("ProductId")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("ProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<Guid>("CategoryId");
+                    b.Property<int>("CategoryId");
 
                     b.Property<DateTime>("ExpirationDate");
 

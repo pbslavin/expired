@@ -38,8 +38,8 @@ namespace FinalApp.Controllers
         }
 
 
-        [Route("Edit/{id:Guid}")]
-        public ActionResult Edit(Guid? id)
+        [Route("Edit/{id:int}")]
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -87,9 +87,9 @@ namespace FinalApp.Controllers
 
 
         [HttpPost]
-        [Route("Edit/{id:Guid}")]
+        [Route("Edit/{id:int}")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(Guid id, [Bind("ProductId,Category,CategoryId,ProductName,PurchaseDate,ExpirationDate")] Product product)
+        public async Task<ActionResult> Edit(int id, [Bind("ProductId,Category,CategoryId,ProductName,PurchaseDate,ExpirationDate")] Product product)
         {
             if (id != product.ProductId)
             {

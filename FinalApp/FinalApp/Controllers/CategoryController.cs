@@ -42,7 +42,7 @@ namespace FinalApp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
                 return View("Index");
             }

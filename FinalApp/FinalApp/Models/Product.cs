@@ -8,17 +8,12 @@ namespace FinalApp.Models
 {
     public class Product
     {
-        public Product()
-        {
-            ProductId = Guid.NewGuid();
-        }
 
-        
-        public Guid ProductId { get; set; }
+        public int ProductId { get; set; }
 
         [Required]
         public Category Category { get; set; }
-        public Guid CategoryId { get; set; }
+        public int CategoryId { get; set; }
 
         [Required]
         public string ProductName { get; set; }

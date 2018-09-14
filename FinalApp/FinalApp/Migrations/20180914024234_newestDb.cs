@@ -1,9 +1,10 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FinalApp.Migrations
 {
-    public partial class initDb : Migration
+    public partial class newestDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,7 +12,8 @@ namespace FinalApp.Migrations
                 name: "Categories",
                 columns: table => new
                 {
-                    CategoryId = table.Column<Guid>(nullable: false),
+                    CategoryId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CategoryName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -23,8 +25,9 @@ namespace FinalApp.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    ProductId = table.Column<Guid>(nullable: false),
-                    CategoryId = table.Column<Guid>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CategoryId = table.Column<int>(nullable: false),
                     ProductName = table.Column<string>(nullable: false),
                     PurchaseDate = table.Column<DateTime>(nullable: false),
                     ExpirationDate = table.Column<DateTime>(nullable: false)
