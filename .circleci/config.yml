@@ -17,4 +17,4 @@ jobs:
           command: dotnet build FinalApp
       - run:
           name: Run tests in test project
-          command: dotnet test heavy-yogurt/FinalAppTest/FinalAppTest.csproj
+          command: dotnet test FinalAppTest/FinalAppTest.csproj
