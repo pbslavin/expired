@@ -7,9 +7,11 @@ using FinalApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FinalApp.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         public ApplicationContext _context { get; set; }
@@ -42,7 +44,7 @@ namespace FinalApp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            catch(Exception ex)
+            catch
             {
                 return View("Index");
             }

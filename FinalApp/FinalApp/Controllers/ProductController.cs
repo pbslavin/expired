@@ -7,9 +7,11 @@ using FinalApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FinalApp.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         public ApplicationContext _context { get; set; }
