@@ -19,7 +19,10 @@ namespace FinalApp.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("FinalApp")));
 
-                services.AddDefaultIdentity<IdentityUser>()
+                services.AddDefaultIdentity<IdentityUser>(config =>
+                {
+                    config.SignIn.RequireConfirmedEmail = true;
+                })
                     .AddEntityFrameworkStores<MyIdentityContext>();
             });
         }
