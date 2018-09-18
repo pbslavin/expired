@@ -26,11 +26,11 @@ namespace FinalApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var id = _userManager.GetUserName(User);
+            var name = _userManager.GetUserName(User);
             ViewBag.Categories = await _context.Categories.ToListAsync();
             return View(await _context.Products
                 .AsNoTracking()
-                .Where(x => x.UserId == id)
+                .Where(x => x.UserName == name)
                 .OrderBy(a => a.ExpirationDate)
                 .ToListAsync());
         }

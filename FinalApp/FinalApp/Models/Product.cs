@@ -31,7 +31,7 @@ namespace FinalApp.Models
         public DateTime ExpirationDate { get; set; }
 
 
-        public string UserId { get; set; }
+        public string UserName { get; set; }
 
     }
 }

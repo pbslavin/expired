@@ -30,7 +30,8 @@ namespace FinalApp.Migrations
                     CategoryId = table.Column<int>(nullable: false),
                     ProductName = table.Column<string>(nullable: false),
                     PurchaseDate = table.Column<DateTime>(nullable: false),
-                    ExpirationDate = table.Column<DateTime>(nullable: false)
+                    ExpirationDate = table.Column<DateTime>(nullable: false),
+                    UserName = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {

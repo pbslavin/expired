@@ -87,7 +87,7 @@ namespace FinalApp
                 roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
             }
             //Assign Admin role to one User 
-            IdentityUser user = await UserManager.FindByEmailAsync("taburasa@aol.com");
+            IdentityUser user = await UserManager.FindByEmailAsync("pbslavin@gmail.com");
             if (user != null)
                 await UserManager.AddToRoleAsync(user, "Admin");
         }
