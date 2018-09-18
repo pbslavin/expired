@@ -79,18 +79,21 @@ namespace FinalApp
             var UserManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
             IdentityResult roleResult;
-            //Adding Admin Role
+            //Add Admin Role
             var roleCheck = await RoleManager.RoleExistsAsync("Admin");
             if (!roleCheck)
             {
-                //create the roles and seed them to the database
+                //Create the role and seed them to the database
                 roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
             }
-            //Assign Admin role to the main User here we have given our newly registered 
+            //Assign Admin role to the main User 
             //login id for Admin management
             IdentityUser user = await UserManager.FindByEmailAsync("pbslavin@gmail.com");
-            var User = new IdentityUser();
-            await UserManager.AddToRoleAsync(user, "Admin");
+            if (user != null)
+                await UserManager.AddToRoleAsync(user, "Admin");
+            user = await UserManager.FindByEmailAsync("taburasa@aol.com");
+            if (user != null)
+                await UserManager.AddToRoleAsync(user, "Admin");
         }
 
         private void EnsureDatabaseUpdated(IApplicationBuilder app)
