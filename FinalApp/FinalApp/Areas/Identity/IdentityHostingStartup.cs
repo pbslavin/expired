@@ -24,8 +24,11 @@ namespace FinalApp.Areas.Identity
                 //{
                 //    config.SignIn.RequireConfirmedEmail = false;
                 //})
-                services.AddIdentity<IdentityUser, IdentityRole>()
-                    //.AddRoles<IdentityRole>()
+                services.AddIdentity<IdentityUser, IdentityRole>(config =>
+                    {
+                        config.SignIn.RequireConfirmedEmail = true;
+                    })
+                //.AddRoles<IdentityRole>()
                     .AddDefaultUI()
                     .AddDefaultTokenProviders()
                     .AddEntityFrameworkStores<MyIdentityContext>();

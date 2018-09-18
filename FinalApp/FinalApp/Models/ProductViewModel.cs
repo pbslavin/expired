@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace FinalApp.Models
 {
@@ -19,6 +20,7 @@ namespace FinalApp.Models
             ProductName = product.ProductName;
             PurchaseDate = product.PurchaseDate;
             ExpirationDate = product.ExpirationDate;
+            UserName = product.UserName;
         }
     }
 
