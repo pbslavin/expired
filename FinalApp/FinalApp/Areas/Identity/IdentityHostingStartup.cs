@@ -1,5 +1,6 @@
 ﻿using System;
 using FinalApp.Models;
+using FinalApp.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -19,10 +20,14 @@ namespace FinalApp.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("FinalApp")));
 
-                services.AddDefaultIdentity<IdentityUser>(config =>
-                {
-                    config.SignIn.RequireConfirmedEmail = true;
-                })
+                //services.AddDefaultIdentity<IdentityUser>(config =>
+                //{
+                //    config.SignIn.RequireConfirmedEmail = false;
+                //})
+                services.AddIdentity<IdentityUser, IdentityRole>()
+                    //.AddRoles<IdentityRole>()
+                    .AddDefaultUI()
+                    .AddDefaultTokenProviders()
                     .AddEntityFrameworkStores<MyIdentityContext>();
             });
         }

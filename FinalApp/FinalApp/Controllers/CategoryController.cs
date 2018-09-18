@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace FinalApp.Controllers
 {
@@ -28,6 +29,7 @@ namespace FinalApp.Controllers
 
 
         // GET: Category/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
