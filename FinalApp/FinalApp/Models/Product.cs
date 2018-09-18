@@ -31,9 +31,7 @@ namespace FinalApp.Models
         public DateTime ExpirationDate { get; set; }
 
 
-        //POSSIBLE NEW FUNCTION
-        //EXPIRING SOON
-        //EXPIRATION DATE - 2 DAYS???
+        public string UserId { get; set; }
 
     }
 }

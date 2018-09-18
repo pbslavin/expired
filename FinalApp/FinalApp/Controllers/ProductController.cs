@@ -8,22 +8,31 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FinalApp.Controllers
 {
     [Authorize]
     public class ProductController : Controller
     {
-        public ApplicationContext _context { get; set; }
-        public ProductController(ApplicationContext context)
+        private UserManager<IdentityUser> _userManager;
+        private ApplicationContext _context;
+        public ProductController(ApplicationContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public async Task<IActionResult> Index()
         {
+            var id = _userManager.GetUserName(User);
             ViewBag.Categories = await _context.Categories.ToListAsync();
-            return View(await _context.Products.AsNoTracking().OrderBy(a => a.ExpirationDate).ToListAsync());
+            return View(await _context.Products
+                .AsNoTracking()
+                .Where(x => x.UserId == id)
+                .OrderBy(a => a.ExpirationDate)
+                .ToListAsync());
         }
 
         [HttpGet]

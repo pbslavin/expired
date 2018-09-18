@@ -79,19 +79,15 @@ namespace FinalApp
             var UserManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
             IdentityResult roleResult;
-            //Add Admin Role
+            //Add Admin role if it doesn't exist
             var roleCheck = await RoleManager.RoleExistsAsync("Admin");
             if (!roleCheck)
             {
-                //Create the role and seed them to the database
+                //Create Admin role and seed to the database
                 roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
             }
-            //Assign Admin role to the main User 
-            //login id for Admin management
-            IdentityUser user = await UserManager.FindByEmailAsync("pbslavin@gmail.com");
-            if (user != null)
-                await UserManager.AddToRoleAsync(user, "Admin");
-            user = await UserManager.FindByEmailAsync("taburasa@aol.com");
+            //Assign Admin role to one User 
+            IdentityUser user = await UserManager.FindByEmailAsync("taburasa@aol.com");
             if (user != null)
                 await UserManager.AddToRoleAsync(user, "Admin");
         }

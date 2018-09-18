@@ -19,15 +19,16 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryName)
-            </td>
-            <td>
-                @Html.ActionLink("Delete", "Delete", new { CategoryId = item.CategoryId })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { CategoryId = item.CategoryId })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

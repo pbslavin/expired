@@ -1,5 +1,7 @@
 ﻿@model FinalApp.Models.Product
 
+@using Microsoft.AspNetCore.Identity
+
 @{
     ViewData["Title"] = "Create";
 }
@@ -37,6 +39,7 @@
                 <input type="date" asp-for="ExpirationDate" class="form-control" />
                 <span asp-validation-for="ExpirationDate" class="text-danger"></span>
             </div>
+            <input type="hidden" asp-for="UserId" value=@User.Identity.Name asp-class="form-control" />
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
