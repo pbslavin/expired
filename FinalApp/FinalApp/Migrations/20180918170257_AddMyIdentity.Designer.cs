@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace FinalApp.Migrations.MyIdentity
+namespace FinalApp.Migrations
 {
     [DbContext(typeof(MyIdentityContext))]
-    [Migration("20180915154638_AddMyIdentity")]
+    [Migration("20180918170257_AddMyIdentity")]
     partial class AddMyIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -139,11 +139,9 @@ namespace FinalApp.Migrations.MyIdentity
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("ProviderKey")
-                        .HasMaxLength(128);
+                    b.Property<string>("ProviderKey");
 
                     b.Property<string>("ProviderDisplayName");
 
@@ -174,11 +172,9 @@ namespace FinalApp.Migrations.MyIdentity
                 {
                     b.Property<string>("UserId");
 
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(128);
+                    b.Property<string>("Name");
 
                     b.Property<string>("Value");
 

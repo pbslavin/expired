@@ -4,16 +4,14 @@ using FinalApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace FinalApp.Migrations
+namespace FinalApp.Migrations.Application
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20180914024234_newestDb")]
-    partial class newestDb
+    partial class ApplicationContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,6 +46,8 @@ namespace FinalApp.Migrations
                         .IsRequired();
 
                     b.Property<DateTime>("PurchaseDate");
+
+                    b.Property<string>("UserName");
 
                     b.HasKey("ProductId");
 

@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace FinalApp.Migrations
+namespace FinalApp.Migrations.Application
 {
-    public partial class newestDb : Migration
+    public partial class newerDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,7 +31,7 @@ namespace FinalApp.Migrations
                     ProductName = table.Column<string>(nullable: false),
                     PurchaseDate = table.Column<DateTime>(nullable: false),
                     ExpirationDate = table.Column<DateTime>(nullable: false),
-                    UserName = table.Column<string>(nullable: false)
+                    UserName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

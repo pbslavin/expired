@@ -90,6 +90,10 @@ namespace FinalApp
             IdentityUser user = await UserManager.FindByEmailAsync("pbslavin@gmail.com");
             if (user != null)
                 await UserManager.AddToRoleAsync(user, "Admin");
+
+            IdentityUser user1 = await UserManager.FindByEmailAsync("dxocchi@gmail.com");
+            if (user1 != null)
+                await UserManager.AddToRoleAsync(user1, "Admin");
         }
 
         private void EnsureDatabaseUpdated(IApplicationBuilder app)
