@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using System.Net.Http;
 using FinalApp.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FinalAppTest
 {
@@ -50,7 +51,21 @@ namespace FinalAppTest
             Assert.NotEmpty(context.Products);
         }
 
-        
+        [Fact]
+        public async Task ConfirmEmail()
+        {
+            // Assemble 
+            //var context = new ApplicationContext(DbAssembly().Options);
+            var confirmEmailModel = new ConfirmEmailModel(_userManager);
+            //var result = ;
+
+            // Act
+            var result = await confirmEmailModel.OnGetAsync(null, null) as ViewResult;
+
+            // Assert
+            Assert.Equal("Index", result.ViewName);
+        }
+
         public DbContextOptionsBuilder<ApplicationContext> DbAssembly()
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationContext>();
