@@ -52,18 +52,16 @@ namespace FinalAppTest
         }
 
         [Fact]
-        public async Task ConfirmEmail()
+        public void HomeController_ShouldReturnIndexView()
         {
-            // Assemble 
-            //var context = new ApplicationContext(DbAssembly().Options);
-            var confirmEmailModel = new ConfirmEmailModel(_userManager);
-            //var result = ;
+            //Assemble
+            var homeController = new HomeController();
 
-            // Act
-            var result = await confirmEmailModel.OnGetAsync(null, null) as ViewResult;
+            //Act
+            var result = homeController.Index();
 
-            // Assert
-            Assert.Equal("Index", result.ViewName);
+            //Assert
+            Assert.IsType<ViewResult>(result);
         }
 
         public DbContextOptionsBuilder<ApplicationContext> DbAssembly()
