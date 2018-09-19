@@ -2,7 +2,7 @@ using System;
 
 namespace FinalApp.Models
 {
-    internal class ErrorViewModel
+    public class ErrorViewModel
     {
         public string RequestId { get; set; }
 

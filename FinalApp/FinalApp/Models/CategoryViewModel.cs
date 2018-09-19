@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FinalApp.Models
 {
-    internal class CategoryViewModel : Category
+    public class CategoryViewModel : Category
     {
         public CategoryViewModel() : this(null)
         {
