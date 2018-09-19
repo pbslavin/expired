@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace FinalApp.Models
 {
-    public class ProductViewModel : Product
+    internal class ProductViewModel : Product
     {
         public ProductViewModel() : this(null)
         {

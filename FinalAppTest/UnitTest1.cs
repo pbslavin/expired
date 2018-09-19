@@ -49,6 +49,7 @@ namespace FinalAppTest
             // Assert
             Assert.NotEmpty(context.Products);
         }
+
         
         public DbContextOptionsBuilder<ApplicationContext> DbAssembly()
         {
