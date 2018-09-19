@@ -15,10 +15,15 @@ namespace FinalApp.Areas.Identity
     {
         public void Configure(IWebHostBuilder builder)
         {
+
             builder.ConfigureServices((context, services) => {
+                var sqlOptions = context.Configuration.Get<SqlServerOptions>();
+                var UserInfo = context.Configuration.GetConnectionString("FinalApp");
+                var UserFormat = String.Format(UserInfo, sqlOptions.UserId, sqlOptions.Password);
                 services.AddDbContext<MyIdentityContext>(options =>
-                    options.UseSqlServer(
-                        context.Configuration.GetConnectionString("FinalApp")));
+                    options.UseSqlServer(UserFormat));
+
+                
 
                 //services.AddDefaultIdentity<IdentityUser>(config =>
                 //{

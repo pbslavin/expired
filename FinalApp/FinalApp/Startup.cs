@@ -40,9 +40,20 @@ namespace FinalApp
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<ApplicationContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("FinalApp")));
-            services.AddSingleton<IEmailSender, EmailSender>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
+            foreach (var item in Configuration.AsEnumerable())
+            {
+                Console.WriteLine($"'{item.Key}':'{item.Value}'");
+            }
+            var sqlOptions = Configuration.Get<SqlServerOptions>();
+            Console.WriteLine(sqlOptions.UserId);
+            var UserInfo = Configuration.GetConnectionString("FinalApp");
+            Console.WriteLine(UserInfo);
+            var UserFormat = String.Format(UserInfo, sqlOptions.UserId, sqlOptions.Password);
+            Console.WriteLine(UserFormat);
+            services.AddDbContext<ApplicationContext>(opts => opts.UseSqlServer(UserFormat));
+            services.AddSingleton<IEmailSender, EmailSender>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

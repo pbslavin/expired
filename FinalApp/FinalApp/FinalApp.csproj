@@ -14,6 +14,8 @@
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Services\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="Migrations\IdentityDb\" />    
   </ItemGroup>
 
 </Project>
