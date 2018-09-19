@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinalApp.Models
 {
-    public class Product
+    internal class Product
     {
 
         public int ProductId { get; set; }

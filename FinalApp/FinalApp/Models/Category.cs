@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FinalApp.Models
 {
-    public class Category
+    internal class Category
     {
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }

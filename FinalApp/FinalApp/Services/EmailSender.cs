@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace FinalApp.Services
 {
-    public class EmailSender : IEmailSender
+    internal class EmailSender : IEmailSender
     {
         public EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor)
         {
@@ -29,7 +29,7 @@ namespace FinalApp.Services
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("Peter@Slavin.com", "Peter Slavin"),
+                From = new EmailAddress("Admin@Expired.com", "Expired.com"),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message
