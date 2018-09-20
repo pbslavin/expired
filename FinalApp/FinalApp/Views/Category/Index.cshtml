@@ -1,19 +1,20 @@
 ﻿@model IEnumerable<FinalApp.Models.Category>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Categories";
 }
 
-<h2>Index</h2>
+<h2>Categories</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+@if (ViewBag.Error != null) {<span class="text-danger">@ViewBag.Error</span>}
 <table class="table">
     <thead>
         <tr>
             <th>
-                Category Name
+                Category
             </th>
             <th></th>
         </tr>
