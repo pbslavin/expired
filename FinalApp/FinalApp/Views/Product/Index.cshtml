@@ -45,7 +45,10 @@
                     @Html.DisplayFor(modelItem => item.ProductName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PurchaseDate, "{0:dd/MM/yyyy}")
+                    @if (item.PurchaseDate != DateTime.MinValue)
+                    {
+                        @Html.DisplayFor(modelItem => item.PurchaseDate, "{0:dd/MM/yyyy}")
+                    }
                 </td>
                 <td @if ((item.ExpirationDate - DateTime.Now).TotalDays < 7) { <text> style="color: red" </text> }>
                     @Html.DisplayFor(modelItem => item.ExpirationDate, "{0:dd/MM/yyyy}")
