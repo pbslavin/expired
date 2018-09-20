@@ -22,21 +22,14 @@ namespace FinalApp.Areas.Identity
                 var UserFormat = String.Format(UserInfo, sqlOptions.UserId, sqlOptions.Password);
                 services.AddDbContext<MyIdentityContext>(options =>
                     options.UseSqlServer(UserFormat));
-
-                
-
-                //services.AddDefaultIdentity<IdentityUser>(config =>
-                //{
-                //    config.SignIn.RequireConfirmedEmail = false;
-                //})
                 services.AddIdentity<IdentityUser, IdentityRole>(config =>
                     {
                         config.SignIn.RequireConfirmedEmail = true;
                     })
-                //.AddRoles<IdentityRole>()
-                    .AddDefaultUI()
-                    .AddDefaultTokenProviders()
-                    .AddEntityFrameworkStores<MyIdentityContext>();
+                
+                .AddDefaultUI()
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<MyIdentityContext>();
             });
         }
     }

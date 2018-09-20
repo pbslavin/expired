@@ -20,16 +20,12 @@ namespace FinalApp.Models
 
         //Purchase Date
         [DataType(DataType.Date)]
-        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime PurchaseDate { get; set; }
-
 
         //Expiration Date
         [Required]
         [DataType(DataType.Date)]
-        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime ExpirationDate { get; set; }
-
 
         public string UserName { get; set; }
 

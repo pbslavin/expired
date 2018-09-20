@@ -41,16 +41,9 @@ namespace FinalApp
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.Configure<AuthMessageSenderOptions>(Configuration);
-            foreach (var item in Configuration.AsEnumerable())
-            {
-                Console.WriteLine($"'{item.Key}':'{item.Value}'");
-            }
-            var sqlOptions = Configuration.Get<SqlServerOptions>();
-            Console.WriteLine(sqlOptions.UserId);
-            var UserInfo = Configuration.GetConnectionString("FinalApp");
-            Console.WriteLine(UserInfo);
-            var UserFormat = String.Format(UserInfo, sqlOptions.UserId, sqlOptions.Password);
-            Console.WriteLine(UserFormat);
+            var sqlOptions = Configuration.Get<SqlServerOptions>();            
+            var UserInfo = Configuration.GetConnectionString("FinalApp");           
+            var UserFormat = String.Format(UserInfo, sqlOptions.UserId, sqlOptions.Password);           
             services.AddDbContext<ApplicationContext>(opts => opts.UseSqlServer(UserFormat));
             services.AddSingleton<IEmailSender, EmailSender>();
             
