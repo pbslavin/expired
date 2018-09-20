@@ -17,7 +17,7 @@
             <div class="form-group">
                 <label asp-for="CategoryId" class="control-label">Category</label>
                 <select asp-for="CategoryId" class="form-control">
-                    @foreach (Category item in ViewData["NewCategory"] as List<Category>)
+                    @foreach (Category item in ViewData["Categories"] as List<Category>)
                     {
                         <option value="@item.CategoryId">@item.CategoryName</option>
                     }

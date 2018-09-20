@@ -24,7 +24,10 @@ namespace FinalApp.Controllers
         // GET: Category
         public async Task<ActionResult> Index()
         {
-            return View(await _context.Categories.AsNoTracking().ToListAsync());
+            return View(await _context.Categories
+                .AsNoTracking()
+                .OrderBy(c => c.CategoryName)
+                .ToListAsync());
         }
 
 
@@ -55,9 +58,20 @@ namespace FinalApp.Controllers
         public async Task<ActionResult> Delete(Category category)
         {
             var c = await _context.Categories.FindAsync(category.CategoryId);
-            _context.Categories.Remove(c);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index", _context.Categories);
+            if (!_context.Products.Any(p => p.Category == category))
+            {
+                _context.Categories.Remove(c);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", _context.Categories);
+            }
+            else
+            {
+                ViewBag.Error = "You may not delete categories with products in them.";
+                return View("Index", await _context.Categories
+                .AsNoTracking()
+                .OrderBy(cat => cat.CategoryName)
+                .ToListAsync());
+            }
         }
     }
 }

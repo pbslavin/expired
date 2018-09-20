@@ -52,7 +52,7 @@ namespace FinalAppTest
         }
 
         [Fact]
-        public void HomeController_ShouldReturnIndexView()
+        public void HomeController_IndexActionShouldReturnIndexView()
         {
             //Assemble
             var homeController = new HomeController();

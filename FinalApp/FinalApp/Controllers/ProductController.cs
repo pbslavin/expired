@@ -15,6 +15,7 @@ namespace FinalApp.Controllers
     {
         private UserManager<IdentityUser> _userManager;
         private ApplicationContext _context;
+
         public ProductController(ApplicationContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
@@ -27,20 +28,20 @@ namespace FinalApp.Controllers
             ViewBag.Categories = await _context.Categories.ToListAsync();
             return View(await _context.Products
                 .AsNoTracking()
-                .Where(x => x.UserName == name)
-                .OrderBy(a => a.ExpirationDate)
+                .Where(u => u.UserName == name)
+                .OrderBy(p => p.ExpirationDate)
                 .ToListAsync());
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            List<Category> NewCategory = new List<Category>();
-            foreach (var c in _context.Categories)
+            List<Category> Categories = new List<Category>();
+            foreach (var c in _context.Categories.OrderBy(c => c.CategoryName))
             {
-                NewCategory.Add(c);
+                Categories.Add(c);
             }
-            ViewData["NewCategory"] = NewCategory;
+            ViewData["Categories"] = Categories;
 
             return View();
         }
@@ -54,12 +55,12 @@ namespace FinalApp.Controllers
                 return NotFound();
             }
 
-            List<Category> NewCategory = new List<Category>();
-            foreach (var c in _context.Categories)
+            List<Category> Categories = new List<Category>();
+            foreach (var c in _context.Categories.OrderBy(c => c.CategoryName))
             {
-                NewCategory.Add(c);
+                Categories.Add(c);
             }
-            ViewData["NewCategory"] = NewCategory;
+            ViewData["Categories"] = Categories;
 
             var product = _context.Products.Find(id);
             if (product == null)
