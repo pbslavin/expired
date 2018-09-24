@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinalApp.Models
 {
-    public class Product
+    public class Product : IValidatableObject
     {
 
         public int ProductId { get; set; }
@@ -28,6 +28,15 @@ namespace FinalApp.Models
         public DateTime ExpirationDate { get; set; }
 
         public string UserName { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            var purchaseDate = (DateTime)validationContext.ObjectInstance;
+            if (purchaseDate > DateTime.Now)
+            {
+                yield return new ValidationResult("Purchase date cannot be in the future.");
+            }
+        }
 
     }
 }
