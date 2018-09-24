@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 
 namespace FinalApp.Controllers
 {
@@ -74,9 +77,15 @@ namespace FinalApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Product product)
         {
-            if (!ModelState.IsValid)
+            if (product.PurchaseDate > DateTime.Now || product.ExpirationDate <= DateTime.Now)
             {
-                return RedirectToAction("Index");
+                List<Category> Categories = new List<Category>();
+                foreach (var c in _context.Categories.OrderBy(c => c.CategoryName))
+                {
+                    Categories.Add(c);
+                }
+                ViewData["Categories"] = Categories;
+                return View();
             }
             try
             {
@@ -86,7 +95,7 @@ namespace FinalApp.Controllers
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index");
             }
         }
 
@@ -108,10 +117,19 @@ namespace FinalApp.Controllers
             {
                 return NotFound();
             }
+            if (product.PurchaseDate > DateTime.Now || product.ExpirationDate <= DateTime.Now)
+            {
+                List<Category> Categories = new List<Category>();
+                foreach (var c in _context.Categories.OrderBy(c => c.CategoryName))
+                {
+                    Categories.Add(c);
+                }
+                ViewData["Categories"] = Categories;
+                return View();
+            }
             _context.Update(product);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", _context.Products);
         }
-
     }
 }
