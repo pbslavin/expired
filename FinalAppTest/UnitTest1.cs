@@ -43,6 +43,8 @@ namespace FinalAppTest
             var context = new ApplicationContext(DbAssembly().Options);
             var productController = new ProductController(context, _userManager);
             var product = (new Product());
+            product.PurchaseDate = DateTime.MinValue;
+            product.ExpirationDate = DateTime.MaxValue;
 
             // Act
             await productController.Create(product);
