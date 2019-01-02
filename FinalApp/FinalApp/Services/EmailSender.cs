@@ -26,7 +26,7 @@ namespace FinalApp.Services
 
         public Task Execute(string subject, string message, string email)
         {
-            var apiKey = System.Environment.GetEnvironmentVariable("SendGridKey");
+            var apiKey = System.Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
